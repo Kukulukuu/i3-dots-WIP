@@ -30,7 +30,7 @@ exec --no-startup-id dex --autostart --environment i3
 #################
 #  Lock Screen  #
 #################
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+# exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l
 
 
 
@@ -70,6 +70,13 @@ bindsym $mod+q kill
 # Bind Rofi #
 #############
 bindsym $mod+d exec ./.config/rofi/launchers/type-2/launcher.sh
+
+
+
+##################
+# Bind Powermenu #
+##################
+bindsym $mod+x exec --no-startup-id /home/kuku/.config/rofi/powermenu/type-2/powermenu.sh
 
 
 
@@ -132,7 +139,7 @@ bindsym $mod+Shift+space floating toggle
 ################################################
 # Bind Change Focus Between Floating / Tilling #
 ################################################
-bindsym $mod+space focus mode_toggle
+bindsym $mod+c focus mode_toggle
 
 
 
@@ -245,20 +252,21 @@ mode "resize" {
 ########
 gaps inner 10
 gaps outer 5
-smart_gaps on
+smart_gaps off
 
 
 
-##################
-# Boarder Colors #
-##################
+###################
+# Boarder / Color #
+###################
+for_window [class="^.*"] border pixel 0 
 
 ########################################################################
 # class                 border  backgr. text    indicator child_border #
 ########################################################################
-client.focused          #3D484D #3D484D #ffffff #3D484D   #3D484D
-client.focused_inactive #232A2E #232A2E #ffffff #232A2E   #232A2E 
-client.unfocused        #232A2E #232A2E #888888 #232A2E   #232A2E
+client.focused          #1e1e3e #1e1e3e #ffffff #7f849c   #1e1e3e
+client.focused_inactive #181825 #181825 #ffffff #7f849c   #181825 
+client.unfocused        #181825 #181825 #888888 #7f849c   #181825
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 
@@ -278,7 +286,7 @@ exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 ###################
 # Network Manager #
 ###################
-exec_always --no-startup-id "nm-applet"
+exec_always "nm-applet"
 
 
 
@@ -292,19 +300,27 @@ exec_always --no-startup-id "setxkbmap us"
 ###############
 # Autotilling #
 ###############
-exec_always "autotiling"
+# exec_always "autotiling"
 
 
 
 ##############
 # Compositor #
 ##############
-exec_always "picom"
+exec_always "picom --experimental-backends"
 
 
 
 ####################
 # Wallpaper Setter #
 ####################
-exec_always --no-startup-id "nitrogen --restore"
+exec_always "nitrogen --restore"
+
+
+
+################
+# Tap To Click #
+################
+exec_always set-prop "Elan Touchpad" "libinput Tapping Enabled" 1
+
 
