@@ -33,7 +33,6 @@ exec --no-startup-id dex --autostart --environment i3
 # exec --no-startup-id xss-lock --transfer-sleep-lock -- betterlockscreen -l
 
 
-
 #####################
 #  Bind Audio Keys  #
 #####################
@@ -283,11 +282,6 @@ client.background       #ffffff
 ###########
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-###################
-# Network Manager #
-###################
-exec_always "nm-applet"
-
 
 
 ###################
@@ -318,9 +312,9 @@ exec_always "nitrogen --restore"
 
 
 
-################
-# Tap To Click #
-################
-exec_always set-prop "Elan Touchpad" "libinput Tapping Enabled" 1
+#############
+# Clipboard #
+#############
+exec_always "copyq"
 
 
