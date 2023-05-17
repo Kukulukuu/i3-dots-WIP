@@ -1,2 +1,10 @@
 # i3-dots
-# This is not finished rather a repo for when I switch distros etc.
+# Editor = Sublime Text4
+# TWM = i3 
+# File Manager = Nemo
+# Color Scheme = Pywal
+# Bar = Polybar (Pywal)
+# Browser = Firefox
+# Run Launcher = Rofi (Pywal)
+# Linux Distro = Void Linux 
+# :)
