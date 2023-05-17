@@ -1,0 +1,321 @@
+# ___ _____    ____             __ _       
+#|_ _|___ /   / ___|___  _ __  / _(_) __ _ 
+# | |  |_ \  | |   / _ \| '_ \| |_| |/ _` |
+# | | ___) | | |__| (_) | | | |  _| | (_| |
+#|___|____/   \____\___/|_| |_|_| |_|\__, |
+#                                    |___/ 
+
+
+###############
+# Set Mod Key #
+###############        
+set $mod Mod4
+
+
+
+############
+# Set Font #
+############    
+font pango:JetBrainsMono Nerd Font 9
+
+
+
+###################
+#  Autostart Xdg  #
+###################
+exec --no-startup-id dex --autostart --environment i3
+
+
+
+#################
+#  Lock Screen  #
+#################
+exec --no-startup-id xss-lock --transfer-sleep-lock --  betterlockscreen -l dimblur
+
+
+#####################
+#  Bind Audio Keys  #
+#####################
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+
+
+#########################
+# Drag Floating Windows #
+#########################
+floating_modifier $mod
+
+
+
+#################
+# Bind Terminal #
+#################
+bindsym $mod+Return exec xfce4-terminal
+
+
+
+###############
+# Kill Client #
+###############
+bindsym $mod+q kill
+
+
+
+#############
+# Bind Rofi #
+#############
+bindsym $mod+d exec rofi -config /home/kuku/.cache/wal/colors-rofi-dark.rasi -show drun -show-icons
+
+##################
+# Bind Powermenu #
+##################
+bindsym $mod+x exec --no-startup-id /home/kuku/.config/rofi/powermenu/type-2/powermenu.sh
+
+
+
+################################
+# Bind Focus Keys (Arrow Keys) #
+################################
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+
+
+##########################################
+# Bind Move Focused Windows (Arrow Keys) #
+##########################################
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+
+
+#########################
+# Bind Split Horizontal #
+#########################
+bindsym $mod+h split h
+
+
+
+#######################
+# Bind Split Vertical #
+#######################
+bindsym $mod+v split v
+
+
+
+###################
+# Bind Fullscreen #
+###################
+bindsym $mod+f fullscreen toggle
+
+
+######################
+# Bind Change Layout #
+######################
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+
+
+###########################
+# Bind Floating / Tilling #
+###########################
+bindsym $mod+Shift+space floating toggle
+
+
+
+################################################
+# Bind Change Focus Between Floating / Tilling #
+################################################
+bindsym $mod+c focus mode_toggle
+
+
+
+###################################
+# Bind Focus The Parent Container #
+###################################
+bindsym $mod+a focus parent
+
+
+
+##############################
+# Define Workspace Variables #
+##############################
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+
+
+#######################
+# Bind Move Workspace #
+#######################
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+
+
+##################################
+# Bind Move Window To Worksplace #
+##################################
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+
+
+##############################
+# Bind Reload I3 Config File #
+##############################
+bindsym $mod+Shift+c reload
+
+
+
+###################
+# Bind Restart I3 #
+###################
+bindsym $mod+Shift+r restart
+
+
+################
+# Bind Exit I3 #
+################
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3?This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+
+
+#######################
+# Bind Resize Windows #
+#######################
+bindsym $mod+r mode "resize"
+
+########################
+# Resize Window Script #
+########################
+mode "resize" {
+        
+        # Bind Resize Left  10 Px #
+        bindsym Left resize shrink width 10 px or 10 ppt
+	
+	# Bind Resize Down 10 Px #
+	bindsym Down resize grow height 10 px or 10 ppt
+        
+	# Bind Resize Up 10 Px #
+	bindsym Up resize shrink height 10 px or 10 ppt
+        
+	# Bind Resize Right 10 Px
+	bindsym Right resize grow width 10 px or 10 ppt
+
+        # Bind Escape Resize Mode
+	bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+
+
+########
+# Gaps #
+########
+gaps inner 10
+gaps outer 5
+smart_gaps off
+
+
+
+###################
+# Boarder / Color #
+###################
+for_window [class="^.*"] border pixel 1
+
+
+
+##############################
+# Set colors from Xresources #
+##############################
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color3 #f0f0f0
+
+
+
+#####################################################################
+# Class                 Border  Backgr. Text Indicator Child_border #
+#####################################################################
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
+
+
+#########################
+#  Auto Start Programs  #
+#########################
+
+
+
+###########
+# Polybar #
+###########
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+
+
+###################
+# Keyboard Layout #
+###################
+exec_always --no-startup-id "setxkbmap us"
+
+
+
+###############
+# Autotilling #
+###############
+exec_always autotiling
+
+
+
+##############
+# Compositor #
+##############
+exec_always picom -f
+
+
+
+####################
+# Wallpaper Setter #
+####################
+exec_always wal -i /home/kuku/Pictures/wallpaper/astronaut-reflection.jpg
